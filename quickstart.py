@@ -11,6 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+from st_audiorec import st_audiorec
 
 df = pd.read_csv("data_mc.csv")
 df = df.drop(columns=['Unnamed: 0'])
@@ -34,7 +35,7 @@ def SVC_linear():
 
 def StratifiedKFold_Validator(clasificador, x, y):
     n_folds = 10
-    kf = StratifiedKFold(n_splits = n_folds, shuffle = True) 
+    kf = StratifiedKFold(n_splits = n_folds, shuffle = True)
 
     cv_y_test = []
     cv_y_pred = []
@@ -70,9 +71,16 @@ disp_report = report.rename(index = words)
 disp_report = disp_report.drop(columns = ['support', 'f1-score'])
 disp_report = disp_report.drop(['weighted avg', 'macro avg', 'accuracy'])
 
+
+# Set the title of the application
 st.title("Clasificación de audios de voz")
+
+# Display the trained words
 words = ['temperatura', 'tarea', 'avisos', 'alemania', 'fotografiar', 'onda', 'mes', 'rascar']
 st.write("Palabras entrenadas: ", ', '.join(words))
 st.dataframe(disp_report)
 
+wav_audio_data = st_audiorec()
 
+if wav_audio_data is not None:
+    st.audio(wav_audio_data, format='audio/wav')
