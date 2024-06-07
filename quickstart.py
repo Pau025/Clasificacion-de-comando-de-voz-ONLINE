@@ -12,6 +12,8 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from st_audiorec import st_audiorec
+import pickle
+
 
 df = pd.read_csv("data_mc.csv")
 df = df.drop(columns=['Unnamed: 0'])
@@ -84,3 +86,8 @@ wav_audio_data = st_audiorec()
 
 if wav_audio_data is not None:
     st.audio(wav_audio_data, format='audio/wav')
+
+    # Save the audio data as a .obj file
+    with open('audio_data.obj', 'wb') as audio_data_file:
+        pickle.dump(wav_audio_data, audio_data_file)
+
