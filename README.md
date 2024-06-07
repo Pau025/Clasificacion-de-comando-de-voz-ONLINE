@@ -25,6 +25,9 @@ Este proyecto tiene como objetivo clasificar comandos de voz en tiempo real, uti
     pip install -r requirements.txt
 ```
 
+> [!WARNING]  
+> Asegúrate de instalar esto en un entorno virtual o sobrescribirá todos los paquetes en tu instalación global de Python, incluyendo la eliminación de todas las dependencias no listadas en este archivo. Configura un entorno virtual de Python de esta manera
+
 ## Uso
 Para ejecutar el programa, ejecutar el siguiente comando:
 ```bash
